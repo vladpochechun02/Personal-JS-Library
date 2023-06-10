@@ -121,6 +121,52 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.find = function (selecto
   }
   return this;
 };
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.closest = function (selector) {
+  let counter = 0;
+  if (selector === null || this.length === 0) {
+    return this;
+  }
+  for (let i = 0; i < this.length; i++) {
+    this[i] = this[i].closest(selector);
+    counter++;
+  }
+
+  // for (let i = 0; i < this.length; i++) {
+  //     const closestElement = this[i].closest(selector);
+  //     if (closestElement !== null) {
+  //         this[i] = closestElement;
+  //         counter++;
+  //     }
+  // }
+
+  const objLength = Object.keys(this).length;
+  for (; counter < objLength; counter++) {
+    delete this[counter];
+  }
+  return this;
+};
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.siblings = function () {
+  let numOfItems = 0;
+  let counter = 0;
+  const copyObj = Object.assign({}, this);
+  for (let i = 0; i < copyObj.length; i++) {
+    const arr = copyObj[i].parentNode.children;
+    for (let j = 0; j < arr.length; j++) {
+      if (copyObj[i] === arr[j]) {
+        continue;
+      }
+      this[counter] = arr[j];
+      counter++;
+    }
+    numOfItems += arr.length - 1;
+  }
+  this.length = numOfItems;
+  const objLength = Object.keys(this).length;
+  for (; numOfItems < objLength; numOfItems++) {
+    delete this[numOfItems];
+  }
+  return this;
+};
 
 /***/ }),
 
@@ -352,6 +398,7 @@ $('div').click(function () {
   console.log($(this).index());
 });
 console.log($('div').eq(1).find('.some'));
+console.log($('.more').eq(0).siblings());
 })();
 
 /******/ })()

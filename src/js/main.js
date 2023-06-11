@@ -1,21 +1,13 @@
 import './lib/lib'
 
-$('a').addAttribute('href', 'https://developer.mozilla.org/ru/docs/Web/API/Element/setAttribute');
-
-$('button').on('click', function() {
-    $(this).toggleClass('active').html('Hey Yo!');
+$('#first').on('click', () => {
+    $('div').eq(1).fadeOut(800);
 });
 
-$('button').on('click', function() {
-    $('div').eq(0).toggleClass('active_div');
+$('[data-count="second"]').on('click', () => {
+    $('div').eq(2).fadeOut(800);
 });
 
-$('div').click(function() {
-    console.log($(this).index());
+$('button').eq(2).on('click', () => {
+    $('.w-500').fadeOut(800);
 });
-
-console.log($('div').eq(1).find('.some'));
-
-console.log($('.more').eq(0).siblings());
-
-$('button').fadeIn(1800);

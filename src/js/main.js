@@ -17,3 +17,5 @@ $('div').click(function() {
 console.log($('div').eq(1).find('.some'));
 
 console.log($('.more').eq(0).siblings());
+
+$('button').fadeIn(1800);

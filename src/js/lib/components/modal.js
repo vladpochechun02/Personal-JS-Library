@@ -1,4 +1,5 @@
 import $ from '../core';
+//Для того, что б при открытии и закрытии модалок не дергалась страница
 import calcScroll from './calcScroll';
 
 //Modal
@@ -9,6 +10,7 @@ $.prototype.modal = function(created) {
             e.preventDefault();
             $(target).fadeIn(500);
             document.body.style.overflow = 'hidden';
+            //Для того, что б при открытии и закрытии модалок не дергалась страница
             let scroll = calcScroll();
             document.body.style.marginRight = `${scroll}px`;
         });
@@ -21,6 +23,8 @@ $.prototype.modal = function(created) {
                 if (created) {
                     document.querySelector(target).remove();
                 }
+                //Для того, что б при открытии и закрытии модалок не дергалась страница
+                document.body.style.marginRight = `0px`;
             });
         });
     
@@ -61,6 +65,7 @@ $.prototype.createModal = function({text, btns} = {}) {
             let btn = document.createElement('button');
             btn.classList.add('btn', ...btns.settings[j][1]);
             btn.textContent = btns.settings[j][0];
+            
             if (btns.settings[j][2]) {
                 btn.setAttribute('data-close', 'true');
             }
